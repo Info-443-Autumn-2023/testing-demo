@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css"; //load Bootstrap
 import "./index.css";
 
+// import "./redux-demo";
+
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import tasksSlice from "./redux/taskSlice";
