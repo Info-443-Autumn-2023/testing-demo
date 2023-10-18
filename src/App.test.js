@@ -7,7 +7,9 @@ import App from "./components/App"; //import Components to test
 describe("Integration:App", () => {
   test("renders without errors", () => {
     render(<App initialTasks={[]} />); //render into testing DOM!
+
     //screen.debug(); //view rendered DOM/HTML in console (for debugging)
+
     expect(screen.getByText("To Do List")).toBeInTheDocument(); //assertion
   })
 
@@ -15,11 +17,11 @@ describe("Integration:App", () => {
     render(<App initialTasks={[]} />); //render into testing DOM!
 
     //enter text
-    const formInput = screen.getByRole("textbox")
+    const formInput = screen.getByTestId("new-task-input");
     userEvent.type(formInput, "TEST TASK"); //type in two words
 
     //click button
-    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getByTestId("new-task-submit-button"));
 
     //assertion! text appears in list
     expect(screen.getByText("TEST TASK")).toBeInTheDocument();

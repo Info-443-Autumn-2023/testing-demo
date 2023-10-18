@@ -20,12 +20,19 @@ export function AddTaskForm(props) {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        data-testid="new-task-input"
         className="form-control mb-3"
         placeholder="What else do you have to do?"
         value={inputtedValue}
         onChange={handleChange}
       />
-      <button type="submit" className="btn btn-primary">Add task to list</button>
+      <button
+        data-testid="new-task-submit-button"
+        type="submit"
+        className="btn btn-primary"
+      >
+        Add task to list
+      </button>
     </form>
   );
 }
