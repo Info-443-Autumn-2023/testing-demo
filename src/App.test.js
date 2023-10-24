@@ -26,4 +26,15 @@ describe("Integration:App", () => {
     //assertion! text appears in list
     expect(screen.getByText("TEST TASK")).toBeInTheDocument();
   })
+
+  test('completes a task', () => {
+    const testTask = {id:2, description:"Learn about React State", complete:false};
+    render(<App initialTasks={[testTask]} />); //render into testing DOM!
+
+
+    const task = screen.getByText(testTask.description);
+    userEvent.click(task);
+
+    expect(task).toHaveClass('font-strike');
+  });
 })
