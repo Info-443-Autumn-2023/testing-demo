@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store"; //will be "single store", may need to clear or re-create
 
 import App from "./components/App"; //import Components to test
+import tasksSlice from "./redux/taskSlice";
 
 describe("Integration:App", () => {
   test("renders without errors", () => {
@@ -39,11 +40,16 @@ describe("Integration:App", () => {
   })
 
   test('completes a task', () => {
-    const testTask = {id:2, description:"Learn about React State", complete:false};
-    render(<App initialTasks={[testTask]} />); //render into testing DOM!
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    ); //render into testing DOM!
 
+    const testTask = "Learn about React State";
+    store.dispatch(tasksSlice.actions.addTask(testTask))
 
-    const task = screen.getByText(testTask.description);
+    const task = screen.getByText(testTask);
     userEvent.click(task);
 
     expect(task).toHaveClass('font-strike');
